@@ -7,3 +7,5 @@
 		
 		
 - Ejemplo de manejo de error personalizado atrapando ArithmeticException 
+
+- Se puede utilizar una plantilla generica para mostrar los tipos de errores a la vista 
