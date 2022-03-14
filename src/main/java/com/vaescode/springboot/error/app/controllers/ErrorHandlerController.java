@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.vaescode.springboot.error.app.errors.UsuarioNoEncontradoException;
+
 @ControllerAdvice
 public class ErrorHandlerController {
 
@@ -28,6 +30,15 @@ public class ErrorHandlerController {
 		model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
 		model.addAttribute("timestamp", new Date());
 		return "error/formato-numero";
+	}
+	@ExceptionHandler(UsuarioNoEncontradoException.class)
+	public String usuarioNoEncontradoExceptionn(UsuarioNoEncontradoException ex, Model model) {
+		
+		model.addAttribute("error", "Usuario no encontrado!");
+		model.addAttribute("message", ex.getMessage());
+		model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+		model.addAttribute("timestamp", new Date());
+		return "error/usuario-no-encontrado";
 	}
 	
 
