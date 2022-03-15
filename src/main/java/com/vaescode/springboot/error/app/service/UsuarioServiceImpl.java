@@ -2,6 +2,7 @@ package com.vaescode.springboot.error.app.service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -27,17 +28,24 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public Usuario obtenerPorId(Integer id) {
-		Usuario resultado = null;  
-		
+		Usuario resultado = null;
+
 		for (Usuario u : this.lista) {
-			
-			if(u.getId().equals(id)) {
+
+			if (u.getId().equals(id)) {
 				resultado = u;
 				break;
 			}
 		}
-		
+
 		return resultado;
+	}
+
+	@Override
+	public Optional<Usuario> obtenerPorIdOptional(Integer id) {
+		Usuario usuario = obtenerPorId(id);
+
+		return Optional.ofNullable(usuario);
 	}
 
 }
